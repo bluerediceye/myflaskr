@@ -1,1 +1,1 @@
-web: gunicorn flaskr --log-file -
+web: python flaskr.py
