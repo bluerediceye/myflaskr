@@ -17,7 +17,6 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-
 def connect_db():
     """Connects to the specific database."""
     rv = sqlite3.connect(app.config['DATABASE'])
@@ -32,8 +31,7 @@ def init_db():
         db.cursor().executescript(f.read())
     db.commit()
 
-
-# @app.cli.command('initdb')
+@app.before_first_request
 def initdb_command():
     """Creates the database tables."""
     init_db()
@@ -96,3 +94,6 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
+if(__name__ == '__main__'):
+    app.run()
