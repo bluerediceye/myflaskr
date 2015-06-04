@@ -1,1 +1,1 @@
-web: gunicorn -b 0.0.0.0:$PORT flaskr:app
+web: gunicorn -b 0.0.0.0:$PORT flaskr:app --log-file -
